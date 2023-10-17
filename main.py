@@ -8,7 +8,16 @@ def calculate_bmi():
 
         bmi = weight / (height ** 2)
 
-        result_label.config(text=f"Vücut Kitle İndeksi (VKİ): {bmi:.2f}")
+        if bmi < 18.5:
+            bmi_category = "Zayıf"
+        elif 18.5 <= bmi < 24.9:
+            bmi_category = "Normal"
+        elif 25.0 <= bmi < 29.9:
+            bmi_category = "Kilolu"
+        else:
+            bmi_category = "Obez"
+
+        result_label.config(text=f"Vücut Kitle İndeksi (VKİ): {bmi:.2f}\nDurum: {bmi_category}")
     except ValueError:
         messagebox.showerror("Hata", "Lütfen geçerli boy ve kilo değerleri girin.")
 
@@ -37,4 +46,3 @@ result_label = tk.Label(root, text="")
 result_label.grid(row=3, column=0, columnspan=2, pady=5)
 
 root.mainloop()
-
